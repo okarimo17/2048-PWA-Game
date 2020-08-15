@@ -38,16 +38,29 @@ body {
   padding: 8px;
 }
 
-.app .game-holder .background-grid {
+
+
+.app .game-holder .background-grid
+/*,
+.app .game-holder .game-grid*/ {
   height: 100%;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   gap:var(--grid-gap);
 }
 
-.app .game-holder .background-grid .grid-row {
+.app .game-holder .background-grid .grid-row
+/* .app .game-holder .game-grid .grid-row  */{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap:var(--grid-gap);
+}
+
+.app .game-holder .game-grid {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   gap:var(--grid-gap);
 }
 
@@ -59,7 +72,15 @@ body {
   box-shadow: 0px 0px 1px 1px rgba(0,0,0,.04);
   user-select: none;
 }
+.app .game-holder .game-grid{
+  transform: translateY(-100%);
+}
 
+.app .game-holder .game-grid .grid-cell {
+
+  border-radius: 5px;
+  user-select: none;
+}
 
 .app .game-holder .grid-cell .number {
   height: 100%;
