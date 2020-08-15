@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import Game from './Game';
 
 function App() {
   return (
-    <div className="App">
-      2048 Game Clone
+    <div className="app">
+      <Game />
     </div>
   );
 }

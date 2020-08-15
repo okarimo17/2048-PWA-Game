@@ -1,38 +1,80 @@
-.App {
-  text-align: center;
+:root {
+  --game-holder-back:#84a5c6;
+  --page-back:#333;
+  --game-container-back:#fbfcfa;
+  --grid-item-back:#c1ccd7;
+  --grid-gap:  8px;;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body,html {
+  height: 100%;
+  margin: 0 ;
+  padding: 0;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  background: var(--page-back);
+  font-family: 'roboto';
 }
 
-.App-link {
-  color: #61dafb;
+.app {
+  width: 350px;
+  background-color: var(--game-holder-back) ;
+  height: 500px;
+  padding: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app .game-holder {
+  background-color: var(--game-container-back);
+  border-radius: 5px;
+  height: 300px;
+  width: 100%;
+  padding: 8px;
+}
+
+.app .game-holder .background-grid {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap:var(--grid-gap);
+}
+
+.app .game-holder .background-grid .grid-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap:var(--grid-gap);
+}
+
+
+.app .game-holder .grid-cell {
+  background: var(--grid-item-back);
+  border: 1px solid var(--grid-item-back);
+  border-radius: 5px;
+  box-shadow: 0px 0px 1px 1px rgba(0,0,0,.04);
+  user-select: none;
+}
+
+
+.app .game-holder .grid-cell .number {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  padding: 2px;
+  border-radius: 5px;
+}
+.app .game-holder .grid-cell .number span {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  border-radius: 2px;
+  color: rgb(51 51 51 / 79%);
 }
