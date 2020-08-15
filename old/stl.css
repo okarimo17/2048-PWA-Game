@@ -1,6 +1,7 @@
 :root {
   --game-holder-back:#84a5c6;
   --page-back:#333;
+  --game-container-back:#fbfcfa;
   --grid-item-back:#c1ccd7;
   --grid-gap:  8px;;
 }
@@ -30,7 +31,7 @@ body {
 }
 
 #app .game-holder {
-  background-color: #fbfcfa;
+  background-color: var(--game-container-back);
   border-radius: 5px;
   height: 300px;
   width: 100%;
