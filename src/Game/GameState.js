@@ -26,38 +26,55 @@ function inputHandeler(ev,updateBoard){
 
 let EndIndex = 0;
 
-function getMove(i,j,val){
-  if(i>=EndIndex){
+function getMove(i,j,val,haveToShift=false){
 
-    let cur_val = board[i][j];
-    if(i  === EndIndex){  
-      if(val === 0){
-        board[i][j] = 0;
-        return cur_val;
-      }
-      return cur_val;
-    }
-
-    if(cur_val === 0){
-      let new_val = getMove(i-1,j,0);
-      if(val===0)
-        return new_val;
-      board[i][j] = new_val;
-      return 0;
-    }else if (cur_val === val){
-      let to_ret = cur_val;
-      board[i][j] = getMove(i-1,j,0);
-      return to_ret;
-    }else if(cur_val === getMove(i-1,j,0)){
-      board[i][j] = cur_val * 2;
-      return 0;
-    }else {
-      return cur_val;
-    }
-
+  if(i<EndIndex){
+    // index is out of bound state of the array
+    return 0;
   }
 
+  let cur_val = board[i][j];
+
+
+
+  if(cur_val === 0){
+    let new_val = getMove(i-1,j,cur_val,true);
+    console.log('zeros ',0);   
+    if(val === 0 || haveToShift)
+      return new_val;
+
+    if(new_val === val)
+      return new_val;
+
+    board[i][j] = new_val;
+    return 0;
+  }
+  
+  let new_val;
+
+  if (cur_val === val){
+    new_val = getMove(i-1,j,0,true);
+    board[i][j] = new_val;
+    console.log('eqauls ',cur_val,'have to shify ',haveToShift);   
+    return cur_val;
+  }
+
+  new_val = getMove(i-1,j,cur_val,haveToShift);
+
+  if(cur_val === new_val){
+    new_val = cur_val + 1;
+  }else {
+    console.log('else')
+    if(val===0){
+      board[i][j] = 0;
+    }
+    return cur_val;
+  }
+  board[i][j] = new_val;
+  return 0;
 }
+
+
 
 
 export default useGameState
