@@ -96,6 +96,9 @@ function getMove(i,j,val,haveToShift=false,uniq=[]){
 
     new_val = getMove(i-1,j,0,true);
 
+    if(new_val<0)
+      new_val = -new_val;
+
     board[i][j] = new_val;
     console.log(`${i}::newval::${new_val} curval:${cur_val}==old_val:${val}`);
 
@@ -160,7 +163,6 @@ function getMove(i,j,val,haveToShift=false,uniq=[]){
 
   return to_ret;
 }
-
 
 
 
