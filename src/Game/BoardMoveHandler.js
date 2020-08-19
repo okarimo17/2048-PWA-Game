@@ -28,9 +28,12 @@ let keysEffect = {
 export function InputEventHandler(ev,board,setBoard){
 
   if(Object.keys(keysEffect).includes(ev.key)){
+
     let result =  executeKeyInput(board,ev.key);
     setBoard(result);
+    
   }
+
 
 }
 

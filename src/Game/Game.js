@@ -8,7 +8,6 @@ function Game(){
   
   let {board}= useGameState(GridItems);
 
-  console.log('render game')
   return(
     <div className="game-holder">
       <GridBackground />    
