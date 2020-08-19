@@ -2,6 +2,7 @@ import React from 'react';
 import useGameState from './GameState';
 
 
+
 const GridItems = 4;
 
 function Game(){
@@ -41,21 +42,23 @@ const GameGrid = ({board})=>{
 
   return(
     <div className="game-grid">
-    {
-      board.map((row,i)=>(
-            row.map(
-              (cell,j)=>(
-                cell !== 0 ?
-                    <div key={i+""+j} className="grid-cell" style={{gridColumnStart:j+1,gridRowStart:i+1}}>
-                      <div className="number">
-                        <span>{cell}</span>
-                      </div>
-                    </div>
-                  :null
-              )
-            )            
-      ))
-    }
+
+          {
+            board.map((row,i)=>(
+                  row.map(
+                    (cell,j)=>(
+                      cell !== 0 ?
+                          <div key={i+""+j} className="grid-cell" style={{gridColumnStart:j+1,gridRowStart:i+1}}>
+                            <div className="number">
+                              <span>{cell}</span>
+                            </div>
+                          </div>
+                        :null
+                    )
+                  )            
+            ))
+          }        
+
     </div>
   )
 }

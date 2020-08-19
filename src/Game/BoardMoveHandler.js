@@ -4,32 +4,31 @@ import  {
   reverseY
 } from './ArrayMethod';
 
-
-let keysEffect = {
-  'ArrowUp':{
+const keysEffect = {
+  'up':{
     trans:0,
     yrev:1
   },
-  'ArrowDown':{
+  'down':{
     trans:0,
     yrev:0
   },
-  'ArrowRight':{
+  'right':{
     trans:1,
     yrev:0
   },
-  'ArrowLeft':{
+  'left':{
     trans:1,
     yrev:1
   }
 }
 
 
-export function InputEventHandler(ev,board,setBoard){
+export function InputEventHandler(direction,board,setBoard){
 
-  if(Object.keys(keysEffect).includes(ev.key)){
+  if(Object.keys(keysEffect).includes(direction)){
 
-    let result =  executeKeyInput(board,ev.key);
+    let result =  executeKeyInput(board,direction);
     setBoard(result);
     
   }
