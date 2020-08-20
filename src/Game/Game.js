@@ -7,17 +7,18 @@ const GridItems = 4;
 
 function Game(){
   
-  let {board}= useGameState(GridItems);
 
   return(
     <div className="game-holder">
       <GridBackground />    
-      <GameGrid board={board} />    
+      <GameGrid />    
     </div>
   )
 }
 
-const GridBackground = ()=>(
+const GridBackground = ()=>{
+  console.log('background render')
+  return (
   <div className="background-grid">
     {
       Array(GridItems).fill(0).map((val,i)=>{
@@ -36,9 +37,12 @@ const GridBackground = ()=>(
     }
    
   </div>
-)
+  )
+}
 
-const GameGrid = ({board})=>{
+const GameGrid = ()=>{
+
+  let {board}= useGameState(GridItems);
 
   return(
     <div className="game-grid">
