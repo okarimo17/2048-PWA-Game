@@ -17,6 +17,7 @@ body,html {
 }
 body {
   display: flex;
+  overscroll-behavior-y: contain;
   justify-content: center;
   align-items: center;
   background: var(--page-back);

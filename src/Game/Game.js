@@ -1,4 +1,5 @@
 import React from 'react';
+import {motion, AnimatePresence} from 'framer-motion';
 import useGameState from './GameState';
 
 
@@ -17,7 +18,6 @@ function Game(){
 }
 
 const GridBackground = ()=>{
-  console.log('background render')
   return (
   <div className="background-grid">
     {
@@ -40,29 +40,58 @@ const GridBackground = ()=>{
   )
 }
 
-const GameGrid = ()=>{
+let directions = {
+  'left':{x:-1,y:0},
+  'right':{x:1,y:0},
+  'up':{x:0,y:-1},
+  'down':{x:0,y:1},
+}
 
-  let {board}= useGameState(GridItems);
+const GameGrid = ()=>{
+  let {board,clicked}= useGameState(GridItems);
+  let dir = {x:0,y:0}
+  if(clicked){
+    dir = directions[clicked]
+  }
+  console.log(dir)
 
   return(
     <div className="game-grid">
-
+    <AnimatePresence>
           {
             board.map((row,i)=>(
                   row.map(
                     (cell,j)=>(
                       cell !== 0 ?
-                          <div key={i+""+j} className="grid-cell" style={{gridColumnStart:j+1,gridRowStart:i+1}}>
+                          <motion.div 
+                            key={i+""+j+""}
+                            initial={{scale:.94}} 
+                            animate={{scale:1}}  
+                            transition={{duration:.15}}
+                            className="grid-cell" 
+                            style={{gridColumnStart:j+1,gridRowStart:i+1}}              
+                            exit={{
+                              opacity:.9,
+                              x:dir.x*100+'%',
+                              y:dir.y*100+'%',
+                              transition:{
+                                duration:.2
+                              },
+                              transitionEnd:{
+                                display:'none'
+                              }
+                            }}              
+                          >
                             <div className="number">
                               <span>{cell}</span>
                             </div>
-                          </div>
+                          </motion.div>
                         :null
                     )
                   )            
             ))
           }        
-
+      </AnimatePresence>
     </div>
   )
 }
