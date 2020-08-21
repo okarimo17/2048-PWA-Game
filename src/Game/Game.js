@@ -49,11 +49,8 @@ let directions = {
 
 const GameGrid = ()=>{
   let {board,clicked}= useGameState(GridItems);
-  let dir = {x:0,y:0}
-  if(clicked){
-    dir = directions[clicked]
-  }
-  console.log(dir)
+
+  let dir = (!directions[clicked]) ? {x:0,y:0} : directions[clicked] ;
 
   return(
     <div className="game-grid">
@@ -65,24 +62,21 @@ const GameGrid = ()=>{
                       cell !== 0 ?
                           <motion.div 
                             key={i+""+j+""}
-                            initial={{scale:.94}} 
-                            animate={{scale:1}}  
-                            transition={{duration:.15}}
+                            initial={{x:-dir.x*150+'%',y:-dir.y*150+'%',zIndex:10}} 
+                            animate={{x:0,y:0,zIndex:1}}  
+                            transition={{duration:.13}}
                             className="grid-cell" 
                             style={{gridColumnStart:j+1,gridRowStart:i+1}}              
                             exit={{
-                              opacity:.9,
-                              x:dir.x*100+'%',
-                              y:dir.y*100+'%',
+                              x:dir.x*150+'%',
+                              display:'none',
+                              y:dir.y*150+'%',
                               transition:{
-                                duration:.2
+                                duration:.12
                               },
-                              transitionEnd:{
-                                display:'none'
-                              }
                             }}              
                           >
-                            <div className="number">
+                            <div className="number" style={{background:''}}>
                               <span>{cell}</span>
                             </div>
                           </motion.div>
