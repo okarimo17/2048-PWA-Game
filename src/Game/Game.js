@@ -2,6 +2,20 @@ import React from 'react';
 import {motion, AnimatePresence} from 'framer-motion';
 import useGameState from './GameState';
 
+const colors = {
+  0:  '#cdc1b4',
+  1: '#eee4da',
+  2: '#ede0c8',
+  3: '#f2b179',
+  4: '#f59563',
+  5: '#f67c5f',
+  6: '#f65e3b',
+  7: '#edcf72',
+  8: '#edcc61',
+  9: '#edc850',
+  10: '#edc53f',
+  11: '#edc22e',
+}
 
 
 const GridItems = 4;
@@ -62,22 +76,27 @@ const GameGrid = ()=>{
                       cell !== 0 ?
                           <motion.div 
                             key={i+""+j+""}
-                            initial={{x:-dir.x*150+'%',y:-dir.y*150+'%',zIndex:10}} 
-                            animate={{x:0,y:0,zIndex:1}}  
-                            transition={{duration:.13}}
+                            initial={{x:-dir.x*150+'%',y:-dir.y*150+'%',zIndex:10,scale:.8}} 
+                            animate={{x:0,y:0,zIndex:1,scale:1}}  
+                            transition={{duration:.1}}
                             className="grid-cell" 
-                            style={{gridColumnStart:j+1,gridRowStart:i+1}}              
+                            style={{gridColumnStart:j+1,gridRowStart:i+1}}    
+
                             exit={{
                               x:dir.x*150+'%',
-                              display:'none',
                               y:dir.y*150+'%',
+                              opacity:.2,
+                              scale:.8,
                               transition:{
-                                duration:.12
+                                duration:.1,
                               },
                             }}              
+
                           >
-                            <div className="number" style={{background:''}}>
-                              <span>{cell}</span>
+                            <div className={
+                              cell>2 ? 'number white-numb':'number'
+                              } style={{background:colors[cell]}}>
+                              <span>{ Math.pow(2,cell) }</span>
                             </div>
                           </motion.div>
                         :null

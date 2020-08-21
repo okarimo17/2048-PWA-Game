@@ -3,10 +3,10 @@ import {InputEventHandler} from './BoardMoveHandler'
 
 let arrowKeys = ['ArrowUp','ArrowDown','ArrowRight','ArrowLeft'];
 
-export function generalInputHandler(board,updateBoard,clicked,setClicked){
+export function generalInputHandler(board,updateBoard,clicked,setClicked,addRandomNumber){
   
   window.onkeydown = function(ev){
-    arrowHandler(ev,board,updateBoard,clicked,setClicked)
+    arrowHandler(ev,board,updateBoard,clicked,setClicked,addRandomNumber)
   }
 
   let {swipeCleaner} = swipeListener(board,updateBoard,clicked,setClicked);
@@ -21,7 +21,7 @@ export function generalInputHandler(board,updateBoard,clicked,setClicked){
 }
 
 
-function arrowHandler(ev,board,setBoard,clicked,setClicked){
+function arrowHandler(ev,board,setBoard,clicked,setClicked,addRandomNumber){
   if(clicked)
     return;
 
@@ -29,6 +29,7 @@ function arrowHandler(ev,board,setBoard,clicked,setClicked){
   if(!arrowKeys.includes(ev.key)){
     return;
   }
+
   let keyDirection = ev.key.toLocaleLowerCase().replace('arrow','');
   
   setClicked(keyDirection);
@@ -38,13 +39,13 @@ function arrowHandler(ev,board,setBoard,clicked,setClicked){
     console.log('setted false')
   },250)
 
-  InputEventHandler(keyDirection,board,setBoard);
+  InputEventHandler(keyDirection,board,setBoard,addRandomNumber);
 }
 
 
 
 
-function swipeListener(board,updateBoard,clicked,setClicked){
+function swipeListener(board,updateBoard,clicked,setClicked,addRandomNumber){
 
   let x0 = 0;
   let y0 = 0;
@@ -65,21 +66,33 @@ function swipeListener(board,updateBoard,clicked,setClicked){
   
 
   function swipeStart(ev){
-
+    if(clicked)
+      return;
     x0 = unifyInput(ev).screenX;
-    y0 = unifyInput(ev).screenY;
-  
+    y0 = unifyInput(ev).screenY;  
   }
 
 
   function swipeEnd(ev){  
-
+    if(clicked && clicked !== 'swipe')
+      return;
 
     ev.preventDefault();
+
     xdiff = unifyInput(ev).screenX - x0;
     ydiff = unifyInput(ev).screenY - y0;
+
     let keyDirection = getDirection(xdiff,ydiff);
-    InputEventHandler(keyDirection,board,updateBoard);
+
+    // console.log(`${xdiff}::${ydiff} `,unifyInput(ev))
+
+    setClicked(keyDirection);
+
+    setTimeout(()=>{
+      setClicked(false)
+    },250)
+
+    InputEventHandler(keyDirection,board,updateBoard,addRandomNumber);
   }
 
   function getDirection(xdiff,ydiff){

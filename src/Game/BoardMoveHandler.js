@@ -1,84 +1,87 @@
 import  {
   deepCopy,
-  transpose,
-  reverseY
 } from './ArrayMethod';
 
-const keysEffect = {
+const BoardSize = 4;
+
+const keyIndexMap = {
   'up':{
-    trans:0,
-    yrev:1
+    x     : 0,
+    xinc  : 1,
+    xend  : BoardSize,
+
+    y     : 0,
+    yinc  : 0,
+    yend  : -1,
   },
   'down':{
-    trans:0,
-    yrev:0
+    x     : BoardSize-1,
+    xinc  : -1,
+    xend  : -1,
+
+    y     : 0,    
+    yinc  : 0,
+    yend  : -1
   },
   'right':{
-    trans:1,
-    yrev:0
+    x     : 0,
+    xinc  : 0,
+    xend  : -1,
+
+    y     : BoardSize-1,
+    yinc  : -1,
+    yend  : -1,
   },
+
   'left':{
-    trans:1,
-    yrev:1
+    x     : 0,
+    xinc  : 0,
+    xend  : -1,
+
+    y     : 0,
+    yinc  : 1,
+    yend  : BoardSize,
   }
 }
 
 
-export function InputEventHandler(direction,board,setBoard){
-
-  if(Object.keys(keysEffect).includes(direction)){
-
+export function InputEventHandler(direction,board,setBoard,addRandomNumber){
+  if(Object.keys(keyIndexMap).includes(direction)){
     let result =  executeKeyInput(board,direction);
+    addRandomNumber(result);
     setBoard(result);
-    
   }
-
-
 }
-
-
-
-
 
 
 function executeKeyInput(board,inputKey){
   let result = deepCopy(board);
-  result = keysMovementEffect(result,inputKey,false)
-  result = BoardMoveAlgo(result);
-  result = keysMovementEffect(result,inputKey,true)
+  result = BoardMoveAlgo(result,inputKey);
   return result;
 }
 
 
-function keysMovementEffect(board,arrEffect,reverse){
-  let {trans,yrev} = keysEffect[arrEffect];
 
-  if(reverse){
-    if(yrev)
-      board = reverseY(board)
-    if(trans)
-      transpose(board) 
+
+function BoardMoveAlgo(boardCopy,inputKey){
+  let {x, y, xend, yend, xinc,yinc} = keyIndexMap[inputKey];
+
+  if(['up','down'].includes(inputKey)){
+    for(let i = 0;i<4;i++){
+      getMove(x,i,-1);
+    }
   }else {
-    if(trans)
-      transpose(board)  
-    if(yrev)
-      board = reverseY(board)    
+    for(let i = 0;i<4;i++){
+      getMove(i,y,-1);
+    }
   }
 
-  return board;
-}
 
-
-function BoardMoveAlgo(boardCopy){
-
-  for(let i = 0;i<4;i++){
-    getMove(3,i,-1);
-  }
 
 
   function getMove(i,j,val,haveToShift=false,uniq=[]){
   
-    if(i<0){
+    if(i===xend || j===yend){
       // index is out of bound state of the array
       return 0;
     }
@@ -94,16 +97,16 @@ function BoardMoveAlgo(boardCopy){
       if(val > 0)
         uniq.push(val)
   
-      let new_val = getMove(i-1,j,cur_val,true,uniq);
+      let new_val = getMove(i+xinc,j+yinc,cur_val,true,uniq);
   
       if(new_val === val){
-        let new_val_new = getMove(i-1,j,0,true,[]);
+        let new_val_new = getMove(i+xinc,j+yinc,0,true,[]);
         boardCopy[i][j] = new_val_new;
         return new_val;
       } 
   
       if(haveToShift){
-        let new_val_new = getMove(i-1,j,0,true,[]);
+        let new_val_new = getMove(i+xinc,j+yinc,0,true,[]);
         boardCopy[i][j] = new_val_new;
         return new_val;
       }
@@ -123,7 +126,7 @@ function BoardMoveAlgo(boardCopy){
   
       let to_ret=cur_val;
   
-      new_val = getMove(i-1,j,0,true,uniq);
+      new_val = getMove(i+xinc,j+yinc,0,true,uniq);
   
       if(haveToShift){    
         boardCopy[i][j] = new_val;
@@ -139,7 +142,7 @@ function BoardMoveAlgo(boardCopy){
       if(cur_val === last){
   
         let to_ret=cur_val;
-        new_val = getMove(i-1,j,0,true,uniq);
+        new_val = getMove(i+xinc,j+yinc,0,true,uniq);
         boardCopy[i][j] = new_val;
         return to_ret;
       }else {
@@ -151,7 +154,7 @@ function BoardMoveAlgo(boardCopy){
   
   
   
-    new_val = getMove(i-1,j,cur_val,haveToShift);
+    new_val = getMove(i+xinc,j+yinc,cur_val,haveToShift);
   
     let to_ret  = cur_val;
   
@@ -161,7 +164,7 @@ function BoardMoveAlgo(boardCopy){
       to_ret = 0;
       if(haveToShift){
         to_ret = -new_val;
-        new_val = getMove(i-1,j,0,true)
+        new_val = getMove(i+xinc,j+yinc,0,true)
   
         boardCopy[i][j] = new_val<0?-new_val:new_val;
         return to_ret;
@@ -182,5 +185,4 @@ function BoardMoveAlgo(boardCopy){
   return boardCopy;
   
 }
-
 

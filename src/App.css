@@ -1,8 +1,11 @@
 :root {
   --game-holder-back:#84a5c6;
   --page-back:#333;
-  --game-container-back:#fbfcfa;
-  --grid-item-back:#c1ccd7;
+  --game-container-back:rgb(187, 173, 160);
+  --game-grid-content-color : #776e65;
+  --game-grid-content-color2 : #f9f6f2;
+  --grid-item-back: #cdc1b4;
+  --grid-cell-background:#cdc1b4;
   --grid-gap:  8px;;
 }
 
@@ -37,6 +40,7 @@ body {
   height: 300px;
   width: 100%;
   padding: 8px;
+  overflow: hidden;
 }
 
 
@@ -68,7 +72,7 @@ body {
 
 .app .game-holder .grid-cell {
   background: var(--grid-item-back);
-  border: 1px solid var(--grid-item-back);
+  /* border: 1px solid var(--grid-item-back); */
   border-radius: 5px;
   box-shadow: 0px 0px 1px 1px rgba(0,0,0,.04);
   user-select: none;
@@ -86,7 +90,7 @@ body {
 .app .game-holder .grid-cell .number {
   height: 100%;
   width: 100%;
-  background-color: #fff;
+  background-color: var(--grid-cell-background);
   padding: 2px;
   border-radius: 5px;
 }
@@ -98,5 +102,9 @@ body {
   align-items: center;
   font-size: 32px;
   border-radius: 2px;
-  color: rgb(51 51 51 / 79%);
+  color: var(--game-grid-content-color);
+}
+
+.white-numb span{
+  color: var(--game-grid-content-color2)!important;
 }
