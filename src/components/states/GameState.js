@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
-import { generalInputHandler } from './InputHandlers';
-import {initDefBoard} from './utlis'
+import { generalInputHandler } from '../utils/InputHandlers';
+import {initDefBoard} from '../utils/utlis'
 
 
 let defboard = initDefBoard();
@@ -13,16 +13,18 @@ export const useGameState = (GridItems,gameEnded,setGameEnded)=>{
   let [clicked,setClicked] = useState(false);
 
   useEffect(()=>{
-    cleaner = generalInputHandler(board,updateBoard,clicked,setClicked,setGameEnded);
-    return ()=>{
-      cleaner();
+    if(!gameEnded){
+      cleaner = generalInputHandler(board,updateBoard,clicked,setClicked,setGameEnded);
+      return ()=>{
+        cleaner();
+      }
     }
-  },[board,clicked])
+  },[board,clicked,gameEnded,setGameEnded])
 
   useEffect(()=>{
     if(gameEnded)
       cleaner();
-  },[gameEnded])
+  },[gameEnded,setGameEnded])
   
 
   return {

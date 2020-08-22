@@ -1,12 +1,14 @@
 :root {
-  --game-holder-back:#84a5c6;
+  /* --game-holder-back:#84a5c6; */
   --page-back:#333;
   --game-container-back:rgb(187, 173, 160);
   --game-grid-content-color : #776e65;
   --game-grid-content-color2 : #f9f6f2;
   --grid-item-back: #cdc1b4;
   --grid-cell-background:#cdc1b4;
-  --grid-gap:  8px;;
+  --grid-gap:  8px;
+  --game-holder-back:#faf8ef;
+
 }
 
 * {
@@ -32,6 +34,7 @@ body {
   background-color: var(--game-holder-back) ;
   height: 500px;
   padding: 30px;
+  color: var(--game-grid-content-color);
 }
 
 .app .game-holder {
@@ -100,11 +103,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 32px;
+  font-size: 26px;
   border-radius: 2px;
   color: var(--game-grid-content-color);
 }
 
-.white-numb span{
-  color: var(--game-grid-content-color2)!important;
+.app .game-holder .grid-cell .number.white-numb span{
+  color: var(--game-grid-content-color2);
+}
+.app .game-holder .grid-cell .number.big-numb span{
+  font-size: 24px;
 }

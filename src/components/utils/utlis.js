@@ -13,7 +13,7 @@ function RandNumber (min=1,max=2){
 let defboard = [
   [9,8,4,8],
   [3,5,6,7],
-  [9,8,7,9],
+  [10,8,7,9],
   [0,5,4,8]
 ];
 

@@ -57,7 +57,6 @@ export function InputEventHandler(direction,board,setBoard,setGameEnded){
     
     if(isGameEnded(result)){
       setGameEnded(true);
-      console.log('dead')
       return;
     }
 
