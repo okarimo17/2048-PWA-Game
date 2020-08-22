@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {motion, AnimatePresence} from 'framer-motion';
 import useGameState from './GameState';
 
@@ -21,12 +21,15 @@ const colors = {
 const GridItems = 4;
 
 function Game(){
-  
 
+  let [gameEnded,setEnded] = useState(false);
+
+  
   return(
     <div className="game-holder">
       <GridBackground />    
-      <GameGrid />    
+      <GameGrid setGameEnded={setEnded} gameEnded={gameEnded} />    
+
     </div>
   )
 }
@@ -61,8 +64,9 @@ let directions = {
   'down':{x:0,y:1},
 }
 
-const GameGrid = ()=>{
-  let {board,clicked}= useGameState(GridItems);
+const GameGrid = ({gameEnded,setGameEnded})=>{
+  
+  let {board,clicked}= useGameState(GridItems,gameEnded,setGameEnded);
 
   let dir = (!directions[clicked]) ? {x:0,y:0} : directions[clicked] ;
 

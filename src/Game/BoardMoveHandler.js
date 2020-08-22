@@ -1,6 +1,7 @@
 import  {
   deepCopy,
-} from './ArrayMethod';
+  addRandomNumber
+} from './utlis';
 
 const BoardSize = 4;
 
@@ -45,12 +46,31 @@ const keyIndexMap = {
 }
 
 
-export function InputEventHandler(direction,board,setBoard,addRandomNumber){
+export function InputEventHandler(direction,board,setBoard,setGameEnded){
   if(Object.keys(keyIndexMap).includes(direction)){
     let result =  executeKeyInput(board,direction);
-    addRandomNumber(result);
+
+    if(board.toString() !== result.toString())
+      addRandomNumber(result)
+
     setBoard(result);
+    
+    if(isGameEnded(result)){
+      setGameEnded(true);
+      console.log('dead')
+      return;
+    }
+
   }
+}
+
+function isGameEnded(board){
+  for(let key in (keyIndexMap)){
+    if(executeKeyInput(board,key).toString() !== board.toString()){
+      return false;
+    }
+  }
+  return true;
 }
 
 
