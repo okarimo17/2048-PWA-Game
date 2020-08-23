@@ -57,16 +57,14 @@ const addRandomNumber = (board)=>{
 }
 
 function initDefBoard(restart){
-  // addRandomNumber(defboard);
-  // addRandomNumber(defboard);
   if(restart){
     let newboard = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
     addRandomNumber(newboard);      
-    console.log('clean',newboard)
+    addRandomNumber(newboard);
     return newboard;
   }
-  // addRandomNumber(defboard);
-  // addRandomNumber(defboard);
+  addRandomNumber(defboard);
+  addRandomNumber(defboard);
   return defboard;
 }
 

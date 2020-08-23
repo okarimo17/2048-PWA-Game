@@ -40,7 +40,7 @@ export const useGameState = (GridItems,gameEnded,setGameEnded,score,gameRestart)
       setGameEnded(false)
       updateBoard(defboard)
     }
-  },[gameRestart,score,setGameEnded])
+  },[gameRestart,score,setGameEnded,gameEnded])
 
   return {
     board,
