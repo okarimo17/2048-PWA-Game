@@ -3,13 +3,15 @@ import {InputEventHandler} from './BoardMoveHandler'
 
 let arrowKeys = ['ArrowUp','ArrowDown','ArrowRight','ArrowLeft'];
 
-export function generalInputHandler(board,updateBoard,clicked,setClicked,setGameEnded){
-  
+
+export function generalInputHandler(board,updateBoard,clicked,setClicked,setGameEnded,score){
+
+
   window.onkeydown = function(ev){
-    arrowHandler(ev,board,updateBoard,clicked,setClicked,setGameEnded)
+    arrowHandler(ev,board,updateBoard,clicked,setClicked,setGameEnded,score)
   }
 
-  let {swipeCleaner} = swipeListener(board,updateBoard,clicked,setClicked,setGameEnded);
+  let {swipeCleaner} = swipeListener(board,updateBoard,clicked,setClicked,setGameEnded,score);
 
   return ()=>{
 
@@ -21,7 +23,7 @@ export function generalInputHandler(board,updateBoard,clicked,setClicked,setGame
 }
 
 
-function arrowHandler(ev,board,setBoard,clicked,setClicked,setGameEnded){
+function arrowHandler(ev,board,setBoard,clicked,setClicked,setGameEnded,score){
 
   if(clicked)
     return;
@@ -39,13 +41,13 @@ function arrowHandler(ev,board,setBoard,clicked,setClicked,setGameEnded){
     setClicked(false)
   },250)
 
-  InputEventHandler(keyDirection,board,setBoard,setGameEnded);
+  InputEventHandler(keyDirection,board,setBoard,setGameEnded,score);
 }
 
 
 
 
-function swipeListener(board,updateBoard,clicked,setClicked,setGameEnded){
+function swipeListener(board,updateBoard,clicked,setClicked,setGameEnded,score){
 
   let x0 = 0;
   let y0 = 0;
@@ -92,7 +94,7 @@ function swipeListener(board,updateBoard,clicked,setClicked,setGameEnded){
       setClicked(false)
     },250)
 
-    InputEventHandler(keyDirection,board,updateBoard,setGameEnded);
+    InputEventHandler(keyDirection,board,updateBoard,setGameEnded,score);
   }
 
   function getDirection(xdiff,ydiff){

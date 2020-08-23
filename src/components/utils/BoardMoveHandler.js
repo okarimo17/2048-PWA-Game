@@ -3,6 +3,8 @@ import  {
   addRandomNumber
 } from './utlis';
 
+let testing = false;
+
 const BoardSize = 4;
 
 const keyIndexMap = {
@@ -44,23 +46,43 @@ const keyIndexMap = {
     yend  : BoardSize,
   }
 }
+let moveScore = 0;
 
 
-export function InputEventHandler(direction,board,setBoard,setGameEnded){
+export function InputEventHandler(direction,board,setBoard,setGameEnded,score){
+
   if(Object.keys(keyIndexMap).includes(direction)){
     let result =  executeKeyInput(board,direction);
 
     if(board.toString() !== result.toString())
       addRandomNumber(result)
 
-    setBoard(result);
     
+    let {gameScore,setScore} = score;
+
+    setScore(gameScore+moveScore);
+    moveScore = 0;
+
+    setBoard(result);
+    testing = true;
+    
+    setHigherScore(gameScore);
+
     if(isGameEnded(result)){
       setGameEnded(true);
-      return;
     }
+    testing = false;
+    return;
+
 
   }
+}
+
+
+function setHigherScore(GameScore){
+  let highScore = localStorage.getItem('HScore') || 0;
+  if(GameScore>highScore)
+    localStorage.setItem('HScore',GameScore);
 }
 
 function isGameEnded(board){
@@ -80,6 +102,11 @@ function executeKeyInput(board,inputKey){
 }
 
 
+function addScore(pow){
+  if(!testing)
+    moveScore += Math.pow(2,pow);
+}
+
 
 
 function BoardMoveAlgo(boardCopy,inputKey){
@@ -94,8 +121,6 @@ function BoardMoveAlgo(boardCopy,inputKey){
       getMove(i,y,-1);
     }
   }
-
-
 
 
   function getMove(i,j,val,haveToShift=false,uniq=[]){
@@ -180,6 +205,7 @@ function BoardMoveAlgo(boardCopy,inputKey){
 
     if(cur_val === new_val){
       new_val = cur_val = cur_val + 1;
+      addScore(cur_val);
       to_ret = 0;
       if(haveToShift){
         to_ret = -new_val;

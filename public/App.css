@@ -27,7 +27,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: var(--game-holder-back) ;
-  background: var(--page-back);
+  /* background: var(--page-back); */
   font-family: 'roboto';
 }
 
@@ -36,9 +36,9 @@ body {
 }
 
 .app {
-  margin:20px auto;
+  margin:0 auto;
   width: 350px;
-  background-color: var(--game-holder-back) ;
+  /* background-color: var(--game-holder-back) ; */
   height: 500px;
   padding: 30px;
   color: var(--game-grid-content-color);
@@ -57,16 +57,17 @@ body {
 
 
 
-@media screen and (min-width:700px) {
-   /* .app {
-    width: 510px;
-  }  
-  .app .game-holder {
-    height: 510px;
-    width: 100%;
-  }    */
+
+@media (min-width:500) {
+  .app {
+    width: 90%!important;
+  }
+  * {
+    display: none!important;
+  }
 
 }
+
 
 
 
@@ -144,7 +145,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-top: 20px;
+  padding: 20px 0;
 }
 
 .app .game-header .game-name {
@@ -176,67 +177,4 @@ body {
   opacity: 0.7;
 }
 
-.app .game-holder.game-ended {
-  position: relative;
-}
 
-.app .game-holder.game-ended .game-end {
-  background: rgb(187 173 160 / 70%);
-  z-index: 100;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  transition: .2s all ease-in-out;
-}
-
-.app .game-holder.game-ended .game-end span{
-  padding: 12px;
-  color: var(--ui-block-color);
-  font-size: 18px;
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-.game-holder .game-end .retry-btn{
-
-  text-transform: uppercase;
-  font-weight: bold;
-  padding: 10px 15px;
-  background-color: var(--game-grid-content-color);
-  color: var(--ui-block-color);
-  border-radius: 2px;
-  font-size: 16px;
-  text-align: center;
-  border: none;
-  transition: .2s all ease-in-out;
-}
-
-.game-holder .game-end .retry-btn:hover{
-  background-color: #99846f;
-  color: var(--ui-block-color);
-  cursor: pointer;
-}
-
-.game-header_outer .game-header_btn {
-  padding: 5px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.game-header_outer .game-header_btn .retry-btn {
-  padding: 5px 9px;
-  font-size: 13px;
-  background-color: var(--game-grid-content-color);
-  color: var(--ui-block-color);
-  border-radius: 2px;
-  border: none;
-  text-align: center;
-  transition: .2s all ease-in-out;
-}

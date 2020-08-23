@@ -12,12 +12,14 @@ let directions = {
 }
 
 
-const GameGrid = ({gameEnded,setGameEnded})=>{
+const GameGrid = ({gameEnded,setGameEnded,score,gameRestart })=>{
 
-  let {board,clicked}= useGameState(GRIDITEMS,gameEnded,setGameEnded);
+  let {board,clicked}= useGameState(GRIDITEMS,gameEnded,setGameEnded,score,gameRestart);
 
   let dir = (!directions[clicked]) ? {x:0,y:0} : directions[clicked] ;
 
+  
+  
   return(
     <div className="game-grid">
       <AnimatePresence>

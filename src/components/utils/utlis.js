@@ -10,12 +10,22 @@ function RandNumber (min=1,max=2){
   return Math.floor(numb);
 }
 
+// let defboard = [
+//   [9,8,4,8],
+//   [3,5,6,7],
+//   [10,8,7,9],
+//   [0,5,4,8]
+// ];
+
+
 let defboard = [
-  [9,8,4,8],
-  [3,5,6,7],
-  [10,8,7,9],
-  [0,5,4,8]
+  [0,0,0,0],
+  [0,0,0,0],
+  [0,0,0,0],
+  [0,0,0,0]
 ];
+
+
 
 
 const addRandomNumber = (board)=>{
@@ -46,7 +56,15 @@ const addRandomNumber = (board)=>{
   return true;
 }
 
-function initDefBoard(){
+function initDefBoard(restart){
+  // addRandomNumber(defboard);
+  // addRandomNumber(defboard);
+  if(restart){
+    let newboard = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+    addRandomNumber(newboard);      
+    console.log('clean',newboard)
+    return newboard;
+  }
   // addRandomNumber(defboard);
   // addRandomNumber(defboard);
   return defboard;
