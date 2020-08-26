@@ -31,7 +31,6 @@ export const useGameState = (GridItems,gameEnded,setGameEnded,score,gameRestart)
   
   useEffect(()=>{
     if(gameRestart){
-      console.log('restarting')
       score.setScore(0);
       if(!gameEnded){
         cleaner()
