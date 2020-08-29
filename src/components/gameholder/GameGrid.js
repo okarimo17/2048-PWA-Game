@@ -48,14 +48,14 @@ const AnimatedCell = ({i,j,dir,cell,children})=>{
     style={{gridColumnStart:j+1,gridRowStart:i+1}}  
     initial={{x:-x*150+'%',y:-y*150+'%',zIndex:10,scale:.8}} 
     animate={{x:0,y:0,zIndex:1,scale:1}}  
-    transition={{duration:.15}}
+    transition={{duration:.13}}
     exit={{
       x:x*150+'%',
       y:y*150+'%',
       opacity:.2,
       scale:.8,
       transition:{
-        duration:.15,
+        duration:.1,
       },
     }}              
     >
