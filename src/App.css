@@ -26,7 +26,6 @@ body {
   overscroll-behavior-y: contain;
   justify-content: center;
   align-items: center;
-  background-color: var(--game-holder-back) ;
   background: var(--page-back);
   font-family: 'roboto';
 }
@@ -54,21 +53,6 @@ body {
   padding: 10px;
   overflow: hidden;
 }
-
-
-
-@media screen and (min-width:700px) {
-   /* .app {
-    width: 510px;
-  }  
-  .app .game-holder {
-    height: 510px;
-    width: 100%;
-  }    */
-
-}
-
-
 
 .app .game-holder .background-grid
 /*,
@@ -241,6 +225,55 @@ body {
   transition: .2s all ease-in-out;
   cursor: pointer;
 }
-button {
-  cursor: pointer;
+
+
+/* responsive Layout */ 
+
+
+@media screen and (max-width:700px) {
+  body {
+    background-color: var(--game-holder-back) ;
+  }
+}
+
+
+@media screen and (max-width:358px) {
+  .app {
+    width: 90%;
+    padding: 20px 5px;
+  }
+  .app .game-header_outer {
+    max-width: 100%;
+    overflow: hidden;
+  }
+  .app .game-header .game-name {
+    font-size: 20px;
+  }
+  .app .game-header .game-scores > * {
+    font-size: 16px;
+    padding: 3px;
+  }
+  .app .game-holder{
+    max-width: 100%;
+    min-width: auto;
+    min-height: auto;
+
+    height: 90vw;
+    width: 90vw;
+    margin-top: 20px;
+  }
+  .game-header .game-scores .label {
+    font-size: 10px;
+  }
+  .game-header .game-scores .score {
+    font-size: 12px;
+  }
+  .game-header_outer .game-header_btn span {
+    font-size: 14px;
+  }
+  .game-header_outer .game-header_btn .retry-btn{
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+  
 }
