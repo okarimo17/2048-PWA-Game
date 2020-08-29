@@ -1,8 +1,18 @@
-# 2048 Game Clone With ReactJS:
-Hello githubers in this repository I will Share with you a clone version of the 2048 Game with ReactJS .
+# 2048K Game Clone With ReactJS:
+Hello githubers in this repository I will Share with you a clone version of the 2048 Game with ReactJS .  
+That Game can be installed on all OS .
+This project was bootstrapped with 
 
+# Project Info :
+Everything in this was made from scratch , Specially the algorithm :
+- Algorithm : It took some time to get a better version of the algorithm, I have maked the algorithm recursivly to get better Performance and to minimize time complexity as much i can .
+- Game First Were made by html/css/js But i have decided to bootstrap it with ReactJS  [Create React App](https://github.com/facebook/create-react-app) .
+- I have used [Framer Motion](https://www.npmjs.com/package/framer-motion) Motion Framer to Animate the game Tiles to be exact .
+- Used the Service Workers to make the Game Offline compatible .
+- Game can be installed on all Operating systems PC & PHONES thanks to PWA . 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Image of Yaktocat](./install.PNG)
+
 
 ## Available Scripts
 
