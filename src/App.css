@@ -227,8 +227,17 @@ body {
   cursor: pointer;
 }
 
+.game-creater{
+  text-align: center;
+  margin-top: 18px;
+  font-size: 15px;
+}
+
+
 
 /* responsive Layout */ 
+
+
 
 
 @media screen and (max-width:700px) {
