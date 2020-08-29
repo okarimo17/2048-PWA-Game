@@ -27,7 +27,9 @@ function GameHeader({gameScore,newGame}){
       </div>
       <div className="game-header_btn">
         <span>GET THE 2048 TILE</span>
-        <button className="retry-btn" onClick={newGame}>Play Again</button>
+        <button className="retry-btn" onClick={newGame}>
+          Play Again
+        </button>
       </div>
     </div>
   )

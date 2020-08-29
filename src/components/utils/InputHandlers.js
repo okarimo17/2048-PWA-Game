@@ -68,6 +68,11 @@ function swipeListener(board,updateBoard,clicked,setClicked,setGameEnded,score){
   
 
   function swipeStart(ev){
+    if(ev.type ==='touchstart' && ev.target.tagName==='BUTTON'){
+      ev.target.click();
+      return;
+    }
+
     if(clicked)
       return;
     x0 = unifyInput(ev).screenX;

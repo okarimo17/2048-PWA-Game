@@ -2,14 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">
-    <link rel=”manifest” href=”/manifest.json”>
-    <link rel=”shortcut icon” type="image/x-icon" href=”/favicon.ico”>
     <meta
       name="2048K Game"
       content="2048K Game using create-react-app"
     />
+    <meta name="viewport" content="width=device-width,initial-scale=1">   
+    <link rel="manifest" href="/manifest.json">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon-180x180.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">
+
     <title>2048K Game</title>
   </head>
   <body>
@@ -20,7 +23,7 @@
 
       if('serviceWorker' in navigator){
         navigator.serviceWorker
-          .register('./service-worker.js',{scope:'./'})
+          .register('./sw.js',{scope:'./'})
           .then((registration)=>{
             // console.log('Registred : ')
           })

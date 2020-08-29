@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+// import * as ServiceWorker from './serviceWorker'
+
 
 ReactDOM.render(
 
@@ -10,3 +12,4 @@ ReactDOM.render(
 );
 
 
+// ServiceWorker.register();

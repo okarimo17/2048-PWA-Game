@@ -239,4 +239,8 @@ body {
   border: none;
   text-align: center;
   transition: .2s all ease-in-out;
+  cursor: pointer;
+}
+button {
+  cursor: pointer;
 }
