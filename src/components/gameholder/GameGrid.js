@@ -48,25 +48,27 @@ const AnimatedCell = ({i,j,dir,cell,children})=>{
     style={{gridColumnStart:j+1,gridRowStart:i+1}}  
     initial={{x:-x*150+'%',y:-y*150+'%',zIndex:10,scale:.8}} 
     animate={{x:0,y:0,zIndex:1,scale:1}}  
-    transition={{duration:.1}}
+    transition={{duration:.15}}
     exit={{
       x:x*150+'%',
       y:y*150+'%',
       opacity:.2,
       scale:.8,
       transition:{
-        duration:.1,
+        duration:.15,
       },
     }}              
     >
-      <div className={
+      <motion.div className={
           'number'+ (cell>2 ? ' white-numb':'') +(cell>9 ? ' big-numb':'')  
         } 
-        style={{
+        animate={{
           background:(COLORS[cell]?COLORS[cell]:COLORS[11]),                                                        
-        }}>
+        }}
+        transition={{duration:.2}}
+        >
         <span>{ Math.pow(2,cell) }</span>
-      </div>
+      </motion.div>
     </motion.div>
   )
 }
