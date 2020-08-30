@@ -1,7 +1,7 @@
 ﻿# 2048K Game Clone With ReactJS:
 Hello githubers in this repository I will Share with you a clone version of the 2048 Game with ReactJS .  
 That Game can be installed on all OS .
-This project was bootstrapped with 
+You can play it from here : [live](https://bit.ly/2YND3VZ)
 
 # Project Info :
 Everything in this game was made from scratch , Specially the algorithm :
